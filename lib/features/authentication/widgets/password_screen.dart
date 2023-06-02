@@ -38,6 +38,15 @@ class _PasswordScreenState extends State<PasswordScreen> {
     return _password.isNotEmpty && _password.length >= 8;
   }
 
+  bool _isCharacterValid() {
+    final regExp =
+        RegExp(r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$");
+    if (!regExp.hasMatch(_password)) {
+      return false;
+    }
+    return true;
+  }
+
   void _onScffoldTap() {
     FocusScope.of(context).unfocus();
   }
@@ -148,14 +157,31 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     style: TextStyle(
                       color: _isPasswordValid() ? Colors.green : Colors.grey,
                     ),
-                  )
+                  ),
+                ],
+              ),
+              Gaps.v10,
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.circleCheck,
+                    size: Sizes.size20,
+                    color: _isCharacterValid() ? Colors.green : Colors.grey,
+                  ),
+                  Gaps.h5,
+                  Text(
+                    "Letters, numbers, and special characters",
+                    style: TextStyle(
+                      color: _isCharacterValid() ? Colors.green : Colors.grey,
+                    ),
+                  ),
                 ],
               ),
               Gaps.v28,
               GestureDetector(
                 onTap: _onSubmit,
                 child: FormButton(
-                  disabled: !_isPasswordValid(),
+                  disabled: !_isPasswordValid() || !_isCharacterValid(),
                 ),
               ),
             ],
