@@ -102,14 +102,62 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             bottom: 0,
             width: MediaQuery.of(context).size.width,
             child: BottomAppBar(
-              child: Row(
-                children: [
-                  const Expanded(child: TextField()),
-                  Gaps.h20,
-                  Container(
-                    child: const FaIcon(FontAwesomeIcons.paperPlane),
-                  )
-                ],
+              color: Colors.grey.shade100,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.size16,
+                  vertical: Sizes.size8,
+                ),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(Sizes.size32),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: "Send a message...",
+                          contentPadding: EdgeInsets.all(
+                            Sizes.size14,
+                          ),
+                          suffixIcon: Padding(
+                            padding: EdgeInsets.only(
+                              right: Sizes.size14,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.faceSmile,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gaps.h10,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Sizes.size32),
+                        color: Colors.grey.shade400,
+                      ),
+                      padding: const EdgeInsets.all(Sizes.size10),
+                      // color: Colors.black,
+                      child: const FaIcon(
+                        FontAwesomeIcons.paperPlane,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           )
